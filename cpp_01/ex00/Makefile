@@ -10,6 +10,7 @@ $(NAME): $(SRC)
 clean:
 	rm -rf $(NAME)
 
-fclean:
-	clean
+fclean: clean
 re: fclean all
+
+.PHONY: all clean fclean re
