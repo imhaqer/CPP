@@ -19,6 +19,7 @@ public:
 		const std::string &nick, const std::string &phone,
 		const std::string &secret);
 	void displyFull() const;
+	void displaySummary(int index) const;
 };
 
 #endif
