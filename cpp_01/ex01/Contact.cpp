@@ -1,7 +1,4 @@
 #include "Contact.hpp"
-#include <iostream>
-#include <iomanip>
-#include <string>
 
 Contact::Contact() {}
 
@@ -18,14 +15,16 @@ void Contact::setDetails(const std::string &first, const std::string &last,
 
 void Contact::displyFull() const {
 
-	std::cout << "First Name: " << firstName << std::endl;
-	std::cout << "Last Name: " << lastName << std::endl;
-	std::cout << "Nickname: " << nickName<< std::endl;
-	std::cout << "Phone Number: " << phoneNumner << std::endl;
-	std::cout << "Darkest Secret: " << darkestSecret << std::endl;
+	std::cout << std::endl;
+	std::cout << "\033[1mFirst Name: \033[0m" << firstName << std::endl;
+	std::cout << "\033[1mLast Name: \033[0m" << lastName << std::endl;
+	std::cout << "\033[1mNickname: \033[0m" << nickName<< std::endl;
+	std::cout << "\033[1mPhone Number: \033[0m" << phoneNumner << std::endl;
+	std::cout << "\033[1mDarkest Secret: \033[0m" << darkestSecret << std::endl;
 }
 
 void Contact::displaySummary(int index) const {
+
 	std::cout << "|" << std::setw(10) << index << "|";
 
 	auto truncate = [](std::string str) {
