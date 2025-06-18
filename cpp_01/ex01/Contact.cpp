@@ -23,17 +23,17 @@ void Contact::displyFull() const {
 	std::cout << "\033[1mDarkest Secret: \033[0m" << darkestSecret << std::endl;
 }
 
-void Contact::displaySummary(int index) const {
 
-	std::cout << "|" << std::setw(10) << index << "|";
-
-	auto truncate = [](std::string str) {
-		if (str.length() > 10)
+static std::string truncate(const std::string &str) {
+	
+	if (str.length() > 10)
 			return str.substr(0, 9) + ".";
 		return str;
-	};
+}
+void Contact::displaySummary(int index) const {
 
-	std::cout << std::setw(10) << truncate(firstName) << "|";
-    std::cout << std::setw(10) << truncate(lastName) << "|";
-    std::cout << std::setw(10) << truncate(nickName) << "|" << std::endl;
+	  std::cout << "|" << std::setw(10) << index << "|"
+              << std::setw(10) << truncate(firstName) << "|"
+              << std::setw(10) << truncate(lastName) << "|"
+              << std::setw(10) << truncate(nickName) << "|\n";
 }

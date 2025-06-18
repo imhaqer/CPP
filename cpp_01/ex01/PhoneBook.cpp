@@ -8,6 +8,7 @@ void PhoneBook::addContact() {
 
     std::cout << "\033[1mEnter contact details:\033[0m\n\n";
     std::cout << "\033[1mFirst Name: \033[0m";
+
     std::getline(std::cin, first);
     if (first.empty())
     {
@@ -54,16 +55,17 @@ void PhoneBook::searchContact() const{
 
     int index;
 
-    if (contactCount == 0) {
+    if (contactCount == 0)
+    {
         std::cout << "\033[1;33mPhonebook is empty!\033[0m\n";
-        return ;}
-    std::cout << "\n|  index   |First Name| Last Name| Nickname |\n";
+        return ;
+    }
+    std::cout << "\n|  index   |First Name|Last Name | Nickname |\n";
     std::cout << "|----------|----------|----------|----------|\n";
 
 
-    for (int i = 0; i < contactCount; i++) {
+    for (int i = 0; i < contactCount; i++)
         contact[i].displaySummary(i);
-    }
 
     std::cout << "|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|\n";
 
@@ -72,11 +74,9 @@ void PhoneBook::searchContact() const{
     std::cin >> index;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    if (index >= 0 && index < contactCount) {
+    if (index >= 0 && index < contactCount)
         contact[index].displyFull();
-    }
-    else {
+    else 
         std::cout << "\033[1;33mInvalid index!\033[0m\n";
-    }
 
 }
