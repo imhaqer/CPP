@@ -1,7 +1,7 @@
 NAME = Zombie
 CC = c++ 
 CFLAGS = -Wall -Werror -Wextra -std=c++11
-SRC = main.cpp randoChump.cpp Zombie.cpp
+SRC = main.cpp randomChump.cpp Zombie.cpp newZombi.cpp
 OBJ = $(SRC:.cpp=.o)
 HEADERS = Zombie.hpp 
 INC = -I.

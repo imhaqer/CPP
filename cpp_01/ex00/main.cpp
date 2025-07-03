@@ -2,12 +2,12 @@
 
 int main()
 {
-	// Zombie *a;
+	Zombie *zombie1;
 
-	// a= newZombie("sth");
-	// a->announce();
-
-	randomChump("someone");
-
-
+	zombie1 = newZombie("heapZombie");
+	zombie1->announce();
+	delete(zombie1);
+	randomChump("stackZombie");
+		
+	return (0);
 }
