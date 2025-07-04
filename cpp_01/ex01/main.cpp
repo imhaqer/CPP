@@ -2,27 +2,18 @@
 
 int main()
 {
+	const int N = 5;
+	const std::string hordeName = "zombieHorde";
 
-	Zombie *horde;
-	int N = 5;
-
-	horde = zombieHorde(N, "zombieHorde");
-
-	for (int i = 0; i < N; i++)
-	{
-		//horde[i] = horde->announce();
-		// std::cout <<"Index " << i << ": ";
-		// horde[i].announce();
-
+	Zombie* horde = zombieHorde(N, hordeName);
+	
+	for (int i = 0; i < N; i++){
 		std::cout << "[" << i << "]"; horde[i].announce();
-		// std::cout << "Zombie " << i << " address: " << &horde[i] << "\n";
-		
 	}
-	// delete[] horde;
 	for (int i = 0; i < N; i++) {
-        horde[i].~Zombie();
+        std::cout << "[" << i << "]"; horde[i].~Zombie();
     }
  	operator delete[](horde);
 
-	return (0);
+	return 0;
 }

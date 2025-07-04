@@ -1,13 +1,17 @@
 #include "Zombie.hpp"
 
 
-Zombie *zombieHorde(int N, std::string name)
+Zombie* zombieHorde(int N, std::string name)
 {
-	Zombie *horde = new Zombie[N];  // requires default constructor
 
-	for (int i = 0; i < N; i++)
-	{
-		horde[i] = Zombie(name);
+	void* rawMemory = operator new[](N * sizeof(Zombie));
+
+	Zombie* zombieHorde = static_cast<Zombie*>(rawMemory);
+
+
+	for (int i = 0; i < N; i++) {
+		new (&zombieHorde[i]) Zombie(name);
 	}
-	return (horde);
+
+	return zombieHorde;
 }
