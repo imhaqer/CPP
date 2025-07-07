@@ -9,7 +9,13 @@ HumanA::~HumanA() {}
 
 void HumanA::attack(void) const 
 {
-	std::cout << this->_name << " attack with their " 
-			<< this->_weapon.getType() << std::endl;
+	const std::string GREEN = "\033[1;32m";
+	const std::string CYAN = "\033[1;36m";
+	const std::string RESET = "\033[0m";
+
+	std::cout << GREEN << this->_name 
+			  << RESET << " attack with their "
+			  << CYAN << this->_weapon.getType() 
+			  << RESET << std::endl;
 }
 

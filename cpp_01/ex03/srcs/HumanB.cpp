@@ -14,9 +14,16 @@ void HumanB::setWeapon(Weapon& newWeapon)
 
 void HumanB::attack(void) const 
 {
+	const std::string GREEN = "\033[1;32m";
+	const std::string CYAN = "\033[1;36m";
+	const std::string RESET = "\033[0m";
+	
 	if (_weapon)
-		std::cout << this->_name << " attacking with their " 
-			<< this->_weapon->getType() << std::endl;
+		std::cout << GREEN << this->_name 
+			  << RESET << " attack with their "
+			  << CYAN << this->_weapon->getType() 
+			  << RESET << std::endl;
 	else
-		std::cout << this->_name << " doesn't have a weapon to attack with!\n";
+		std::cout << GREEN << this->_name 
+				<< RESET << " has no weapon to attack with!\n";
 }
