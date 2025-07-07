@@ -1,10 +1,10 @@
 NAME = UNNECESSARY_VIOLENCE
 CC = c++ 
 CFLAGS = -Wall -Werror -Wextra -std=c++11
-SRC = main.cpp Weapon.hpp Weapon.cpp HumanA.cpp HumanB.cpp
+SRC = srcs/main.cpp srcs/Weapon.cpp srcs/HumanA.cpp srcs/HumanB.cpp
 OBJ = $(SRC:.cpp=.o)
-HEADERS = HumanA.hpp HumanB.hpp
-INC = -I.
+HEADERS = include/HumanA.hpp include/HumanB.hpp include/Weapon.hpp
+INC = -Iinclude
 
 all: $(NAME)
 
