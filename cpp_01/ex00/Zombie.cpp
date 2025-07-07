@@ -2,7 +2,6 @@
 
 Zombie::Zombie(std::string name) : _name(name)
 {
-	// this->_name = name;
 	std::cout << _name << " got created.\n";
 }
 
