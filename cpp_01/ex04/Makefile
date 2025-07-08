@@ -1,17 +1,17 @@
-NAME = Replace
+NAME = replace
 CC = c++ 
 CFLAGS = -Wall -Werror -Wextra -std=c++11
 SRC = main.cpp Replace.cpp
 OBJ = $(SRC:.cpp=.o)
-HEADERS = Replace.hpp
-INC = -I.
+# HEADERS = Replace.hpp
+# INC = -I.
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.cpp $(HEADERS)
+%.o: %.cpp 
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 clean:
 	rm -rf $(OBJ)
