@@ -2,6 +2,10 @@
 
 Zombie *newZombie(std::string name )
 {
-	Zombie *zombie = new Zombie(name);
+	Zombie *zombie = new(std::nothrow) Zombie(name);
+	if (!zombie) {
+		std::cerr << "Error: memory allocation failed.\n";
+		return nullptr;
+	}
 	return(zombie);
 }

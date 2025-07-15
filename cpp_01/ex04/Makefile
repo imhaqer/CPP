@@ -3,8 +3,6 @@ CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11
 SRC = main.cpp Replace.cpp
 OBJ = $(SRC:.cpp=.o)
-# HEADERS = Replace.hpp
-# INC = -I.
 
 all: $(NAME)
 
