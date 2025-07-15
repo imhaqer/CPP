@@ -6,7 +6,7 @@
 /*   By: hahamdan <hahamdan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:52:16 by hahamdan          #+#    #+#             */
-/*   Updated: 2025/07/02 16:09:36 by hahamdan         ###   ########.fr       */
+/*   Updated: 2025/07/15 12:48:21 by hahamdan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,6 @@ void PhoneBook::searchContact() const{
    
    
     std::cout << "\n\033[1mEnter index to display: \033[0m";
-    // std::getline(std::cin, index);
-  
-    // if ((index.empty()))
-    //     return ;
-    // std::cout << index << std::endl;
 
 
     if (!std::getline(std::cin, index)) {
@@ -113,22 +108,12 @@ void PhoneBook::searchContact() const{
     int nbr = std::stoi(index);
     std::cout << nbr << std::endl;
     if (nbr >= 0 && nbr < contactCount)
-        contact[nbr].displyFull();
+        contact[nbr].displayFull();
     else 
         std::cout << "\033[1;31mInvalid range!\033[0m\n";
     }
     catch (...) {
         std::cout << "\033[1;31mPlease enter a valid number!\033[0m\n";
     }
-        
-    // int  nbr = std::stoi(index);
-    //  std::cout << index << std::endl;
-    //std::cin >> index;
-  //  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-    // if (index >= 0 && index < contactCount)
-    //     contact[index].displyFull();
-    // else 
-    //     std::cout << "\033[1;33mInvalid index!\033[0m\n";
 
 }

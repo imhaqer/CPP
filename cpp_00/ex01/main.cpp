@@ -6,7 +6,7 @@
 /*   By: hahamdan <hahamdan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:52:12 by hahamdan          #+#    #+#             */
-/*   Updated: 2025/07/02 16:15:50 by hahamdan         ###   ########.fr       */
+/*   Updated: 2025/07/15 12:57:04 by hahamdan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ int main()
         std::cout << "> ";
         if (!std::getline(std::cin, command)) {
             if (std::cin.eof()) {
-                std::cout << std::endl;
-                break;}
+                std::cout << "\n(EOF detected - exiting phonebook)\n";
+                break;
+            }
             else
                 std::cout << "\033[1;31getline error!\033[0m]\n";
             }
