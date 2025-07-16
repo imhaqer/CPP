@@ -34,8 +34,8 @@ void Harl::_error()
 void Harl::complain(std::string level)
 {
 	Harl obj;
-	std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};  //array of str
-	
+	std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	 
 	void (Harl::*complains[])() = {
 		&Harl::_debug,
 		&Harl::_info,
