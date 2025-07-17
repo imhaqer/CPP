@@ -6,7 +6,7 @@
 /*   By: hahamdan <hahamdan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:52:07 by hahamdan          #+#    #+#             */
-/*   Updated: 2025/06/18 15:58:09 by hahamdan         ###   ########.fr       */
+/*   Updated: 2025/07/15 12:48:04 by hahamdan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ void Contact::setDetails(const std::string &first, const std::string &last,
 	firstName = first;
 	lastName = last;
 	nickName = nick;
-	phoneNumner = phone;
+	phoneNumber = phone; 
 	darkestSecret = secret;
 }
 
-void Contact::displyFull() const {
+void Contact::displayFull() const {
 
 	std::cout << std::endl;
 	std::cout << "\033[1mFirst Name: \033[0m" << firstName << std::endl;
 	std::cout << "\033[1mLast Name: \033[0m" << lastName << std::endl;
 	std::cout << "\033[1mNickname: \033[0m" << nickName<< std::endl;
-	std::cout << "\033[1mPhone Number: \033[0m" << phoneNumner << std::endl;
+	std::cout << "\033[1mPhone Number: \033[0m" << phoneNumber << std::endl;
 	std::cout << "\033[1mDarkest Secret: \033[0m" << darkestSecret << std::endl;
 }
 

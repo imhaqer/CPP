@@ -6,7 +6,7 @@
 /*   By: hahamdan <hahamdan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:52:28 by hahamdan          #+#    #+#             */
-/*   Updated: 2025/06/18 15:52:29 by hahamdan         ###   ########.fr       */
+/*   Updated: 2025/07/15 12:47:51 by hahamdan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ private:
 	std::string firstName;
 	std::string lastName;
 	std::string nickName;
-	std::string phoneNumner;
+	std::string phoneNumber;
 	std::string darkestSecret;
 
 public:
@@ -30,7 +30,7 @@ public:
 	void setDetails(const std::string &first, const std::string &last,
 		const std::string &nick, const std::string &phone,
 		const std::string &secret);
-	void displyFull() const;
+	void displayFull() const;
 	void displaySummary(int index) const;
 };
 
