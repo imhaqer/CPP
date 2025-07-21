@@ -21,12 +21,11 @@ Fixed& Fixed::operator=(const Fixed& obj) {
     if (this != &obj)
         this->setRawBits(obj.getRawBits());
     return *this;
-        
-
 }
+
 int Fixed::getRawBits() const {
 
-    std::cout << "getRawBits() member function called\n";
+    std::cout << "getRawBits member function called\n";
     return (this->_rawValue);
 }
 
