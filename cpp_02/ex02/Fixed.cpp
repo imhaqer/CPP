@@ -89,8 +89,6 @@ Fixed Fixed::operator*(const Fixed &other) const {
 }
 
 Fixed Fixed::operator/(const Fixed &other) const {
-	if (other.getRawBits() == 0)
-		throw std::runtime_error("Division by zero");
 	return (Fixed(this->toFloat() / other.toFloat()));
 }
 
@@ -116,4 +114,28 @@ bool Fixed::operator==(const Fixed &other) const {
 
 bool Fixed::operator!=(const Fixed &other) const {
 	return this->getRawBits() != other.getRawBits();
+}
+
+ Fixed&	Fixed::min(Fixed &num1, Fixed &num2) {
+	if (num1< num2)
+		return num1;
+	return num2;
+}
+
+Fixed const &Fixed::min(Fixed const &num1, Fixed const &num2) {
+	if (num1 < num2)
+		return num1;
+	return num2;
+}
+
+Fixed&	Fixed::max(Fixed &num1, Fixed &num2) {
+	if (num1 > num2)
+		return num1;
+	return num2;
+}
+
+Fixed const &Fixed::max(Fixed const &num1, Fixed const &num2) {
+	if (num1 > num2)
+		return num1;
+	return num2;
 }
