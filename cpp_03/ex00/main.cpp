@@ -8,8 +8,15 @@ int main ()
 	ClapTrap unkown;
 
 	Bob.attack("Nic");
+	Nic.takeDamage(3);
+	calp.getDanagepoint();
+
+	Nic.beRepaired(10);
+	Bob.attack("Nic");
+	Nic.takeDamage(7);
 
 
-
+	std::cout << std::endl;
 	return 0;
 }
+
