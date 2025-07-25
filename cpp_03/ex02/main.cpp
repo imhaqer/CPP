@@ -1,13 +1,38 @@
-#include "ClapTrap.hpp"
+#include "FragTrap.hpp"
 
 int main ()
 {
-	ClapTrap Bob("Bob");
-	ClapTrap Nic("Nic");
+	std::cout<< "\n\n";
 
-	ClapTrap unkown;
 
-	Bob.attack("Nic");
+
+	std::cout << BOLD << "==== 1. Base Pointer to Derived (polymoriphism) =====\n" << RESET;
+
+
+
+	ClapTrap* PolyBot = new FragTrap("PolyBot"); 
+	PolyBot->attack("Target");  // uses Scav trap attack()
+
+	std::cout << BOLD <<  "\n======= Virtual Destructor Behavior =========\n" << RESET;
+	delete PolyBot;   // virtual destructor 
+
+
+	
+	
+	
+	
+	std::cout << BOLD << "\n\n==== 2. Direct Object Test (No Polymorphism) ====\n " << RESET;
+
+	ClapTrap normalBot("Bot1");
+	FragTrap normalBot2("Bot2");
+
+	normalBot.attack("Target");
+	normalBot2.attack("Enemy");
+	normalBot2.highFivesGuys();
+
+
+	std::cout << BOLD << "\n======= Deleting Non-Polymorphic Object =========\n" << RESET;
+	
 
 
 

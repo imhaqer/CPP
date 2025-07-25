@@ -30,26 +30,3 @@ class ClapTrap {
 
 
 #endif
-
-
-// ClapTrap::ClapTrap() : _name("Unkown"), _hitPoints(10), _energyPoints(10),
-// 	_attackDamage(0)
-// {
-// 	std::cout << GREEN << "🛠️  ClapTrap Constructed! 🛠️\n" << RESET
-// 		<< BOLD << "Name: " << RESET << _name
-// 		<< BOLD << "\nHit points: " << RESET << _hitPoints
-// 		<< BOLD << "\nEnergy points: " << RESET << _energyPoints
-// 		<< BOLD << "\nAttack damage: " << RESET << _attackDamage << std::endl;
-// 		std::cout << std::endl;
-// }
-
-// ClapTrap::ClapTrap(const std::string &name) : _name(name), _hitPoints(10),
-// 	_energyPoints(10), _attackDamage(0)
-// {
-// 	std::cout << GREEN << "🛠️  ClapTrap Constructed! 🛠️\n" << RESET
-// 		<< BOLD << "Name: " << RESET << _name
-// 		<< BOLD << "\nHit points: " << RESET << _hitPoints
-// 		<< BOLD << "\nEnergy points: " << RESET << _energyPoints
-// 		<< BOLD << "\nAttack damage: " << RESET << _attackDamage << std::endl;
-// 		std::cout << std::endl;
-// }
