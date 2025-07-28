@@ -57,17 +57,6 @@ FragTrap::~FragTrap()  {
 }
 
 
-void FragTrap::attack(const std::string& target)  {
-  if (_hitPoints > 0 || _energyPoints > 0)
-	{
-		std::cout << " 🗡️ [FragTrap] " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!\n";
-		_energyPoints -= 1;
-		std::cout  << " ⚠️ [FragTrap] " << _name << " loses 1 energy points. " << _energyPoints << " energy points left.\n";
-	}
-	else
-		std::cout << " ❌ [FragTrap] " << _name << " can't attack, not enough energy points!\n" << std::endl;
-}
-
 void FragTrap::highFivesGuys() {
 
 	std::cout << " 👏 [FragTrap] " << _name << "sending a positive highFives!\n";
