@@ -1,12 +1,12 @@
 #include "WrongAnimal.hpp"
 
 WrongAnimal::WrongAnimal() {
-    _type = "Unkown Animal";
+    _type = "WrongAnimal";
     std::cout << "WrongAnimal default constructor called\n";
 }
 
 WrongAnimal::~WrongAnimal(){
-    std::cout << "Wrong animal destructor called\n";
+    std::cout << "WrongAnimal destructor called\n";
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal& other){

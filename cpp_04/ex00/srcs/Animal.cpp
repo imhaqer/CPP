@@ -5,6 +5,7 @@ Animal::Animal() {
     std::cout << "Animal default constructor called\n";
 }
 
+
 Animal::~Animal(){
     std::cout << "Animal destructor called\n";
 }

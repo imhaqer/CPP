@@ -4,13 +4,14 @@
 #include <string>
 #include <iostream>
 
+
 class Animal {
     protected:
         std::string _type;
 
     public:
-        Animal();
-        virtual ~Animal();
+        Animal();  // Default constructor
+        virtual ~Animal();  // Virtual destructor
         Animal& operator=(const Animal& other);
         Animal(const Animal& other);
 

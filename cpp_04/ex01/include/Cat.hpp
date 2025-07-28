@@ -15,6 +15,7 @@ class Cat : public Animal {
         Cat(const Cat& other);
 
         void makeSound() const override;
+        Brain* getBrain() const;
 };
 
 #endif

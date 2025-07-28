@@ -16,6 +16,7 @@ class Dog : public Animal {
         Dog(const Dog& other);
     
         void makeSound() const override;
+        Brain* getBrain() const;
 
 };
 

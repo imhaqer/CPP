@@ -5,10 +5,10 @@ WrongCat::WrongCat() : WrongAnimal() {
     std::cout << "WrongCat default constructor called" << std::endl;
 }
 
-WrongCat::WrongCat(const std::string& type) : WrongAnimal() {
-    this->_type = type;
-    std::cout << "WrongCat parameterized constructor called" << std::endl;
-}
+// WrongCat::WrongCat(const std::string& type) : WrongAnimal() {
+//     this->_type = type;
+//     std::cout << "WrongCat parameterized constructor called" << std::endl;
+// }
 
 WrongCat::~WrongCat() {
     std::cout << "WrongCat destructor called" << std::endl;
