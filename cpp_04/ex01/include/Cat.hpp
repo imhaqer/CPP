@@ -9,7 +9,7 @@ class Cat : public Animal {
         Brain *_brain;
     public:
         Cat();
-        ~Cat() override;
+        ~Cat();
         Cat(const std::string& type);
         Cat& operator=(const Cat& other);
         Cat(const Cat& other);

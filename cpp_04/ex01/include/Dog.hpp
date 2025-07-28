@@ -10,7 +10,7 @@ class Dog : public Animal {
         Brain *_brain;
     public:
         Dog();
-        ~Dog() override;
+        ~Dog();
         Dog(const std::string& type);
         Dog& operator=(const Dog& other);
         Dog(const Dog& other);
