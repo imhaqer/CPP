@@ -10,11 +10,11 @@ int main ()
 
 
 
-	ClapTrap* PolyBot = new FragTrap("PolyBot"); 
-	PolyBot->attack("Target");  // uses Scav trap attack()
+	ClapTrap* Bot1 = new FragTrap("Bot1");
+	Bot1->attack("Target");  // uses FragtTap attack()
 
 	std::cout << BOLD <<  "\n======= Virtual Destructor Behavior =========\n" << RESET;
-	delete PolyBot;   // virtual destructor 
+	delete Bot1;   // virtual destructor 
 
 
 	

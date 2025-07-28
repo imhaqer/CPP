@@ -6,8 +6,6 @@
 #include "ClapTrap.hpp"
 
 
-
-
 //     DERIVED CLASS       //
 class ScavTrap : public ClapTrap {
 	public:

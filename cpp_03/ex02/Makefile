@@ -1,10 +1,10 @@
 NAME = FragTrap
 CC = c++ 
 CFLAGS = -Wall -Werror -Wextra -std=c++11
-SRC = main.cpp ClapTrap.cpp FragTrap.cpp
+SRC = srcs/main.cpp srcs/ClapTrap.cpp srcs/FragTrap.cpp  srcs/ScavTrap.cpp
 OBJ = $(SRC:.cpp=.o)
-HEADERS = ClapTrap.hpp FragTrap.hpp
-INC = -I.
+HEADERS = include/ClapTrap.hpp include/FragTrap.hpp include/ScavTrap.hpp
+INC = -I include
 
 all: $(NAME)
 

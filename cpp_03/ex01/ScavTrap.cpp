@@ -22,7 +22,7 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap () {
 	_energyPoints = 50;
 	_attackDamage = 20;
 
-	std::cout << BLUE << "🛠️  Default ScavTrap constructed! 🛠️\n" << RESET
+	std::cout << BLUE << "🛠️  ScavTrap constructed! 🛠️\n" << RESET
 	<< BOLD << " Name: " << RESET << _name
 	<< BOLD << "\n Hit points: " << RESET << _hitPoints
 	<< BOLD << "\n Energy points: " << RESET << _energyPoints

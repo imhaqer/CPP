@@ -22,7 +22,7 @@ FragTrap::FragTrap(const std::string& name) : ClapTrap () {
 	_energyPoints = 100;
 	_attackDamage = 30;
 
-	std::cout << BLUE << "🛠️  Default FragTrap constructed! 🛠️\n" << RESET
+	std::cout << BLUE << "🛠️  FragTrap constructed! 🛠️\n" << RESET
 	<< BOLD << " Name: " << RESET << _name
 	<< BOLD << "\n Hit points: " << RESET << _hitPoints
 	<< BOLD << "\n Energy points: " << RESET << _energyPoints

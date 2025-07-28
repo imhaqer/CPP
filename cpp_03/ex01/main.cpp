@@ -28,6 +28,7 @@ int main ()
 
 	normalBot.attack("Target");
 	normalBot2.attack("Enemy");
+	normalBot2.guardGate();
 
 
 	std::cout << BOLD << "\n======= Deleting Non-Polymorphic Object =========\n" << RESET;

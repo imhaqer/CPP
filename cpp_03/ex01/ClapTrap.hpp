@@ -12,7 +12,6 @@ const std::string YELLOW  = "\033[1;33m";
 const std::string BLUE    = "\033[1;34m"; 
 
 
-
 //        BASE CLASS     //
 class ClapTrap {
 	protected:
