@@ -14,17 +14,18 @@ Cat::~Cat() {
     std::cout << "Cat destructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& other) : Animal(other), _brain(new Brain(*other._brain)) {
+Cat::Cat(const Cat& other) 
+    : Animal(other), _brain(new Brain(*other._brain)) {
 
     std::cout << "Cat copy constructor called" << std::endl;
 }
 
 Cat &Cat::operator=(const Cat &other) {
 
-    if (this != &other) {               // 1. Check for self-assignment
-        Animal::operator=(other);       // 2. Copy base class part
-        delete _brain;                   // 3. Clean up old resources
-        _brain = new Brain(*other._brain);// 4. Deep copy
+    if (this != &other) {
+        Animal::operator=(other);
+        delete _brain; 
+        _brain = new Brain(*other._brain);
     }
     
     std::cout << "Cat assignment operator called" << std::endl;

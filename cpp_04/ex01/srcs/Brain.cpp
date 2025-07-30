@@ -7,7 +7,7 @@ Brain::Brain() {
 
 Brain::~Brain() {
 
-    std::cout << "Brain destroyed!\n";	
+    std::cout << "Brain destructor called!\n";	
 }
 
 Brain::Brain(const Brain& other) {
