@@ -1,7 +1,7 @@
-#include "Animal.hpp"
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongCat.hpp"
+#include "../include/Animal.hpp"
+#include "../include/Dog.hpp"
+#include "../include/Cat.hpp"
+#include "../include/WrongCat.hpp"
 
 int main() {
 
@@ -50,7 +50,7 @@ int main() {
 	
 	// std::cout << "\n\n========== Cleanup ============\n";
 
-	const Animal* abstractAnimal = new Animal();
+	//const Animal* abstractAnimal = new Animal();
 	//Animal class is now abstract and cannot be instaciated
 
 	return 0;

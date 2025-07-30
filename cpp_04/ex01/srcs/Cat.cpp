@@ -1,4 +1,4 @@
-#include "Cat.hpp"
+#include "../include/Cat.hpp"
 
 
 Cat::Cat() : Animal() {
@@ -7,12 +7,6 @@ Cat::Cat() : Animal() {
     
     std::cout << "Cat default constructor called" << std::endl;
 }
-
-// Cat::Cat(const std::string& type) : Animal() {
-//     this->_type = type;
-//     this->_brain = new Brain();
-//     std::cout << "Cat parameterized constructor called" << std::endl;
-// }
 
 Cat::~Cat() {
 
@@ -40,8 +34,6 @@ Cat &Cat::operator=(const Cat &other) {
 void Cat::makeSound() const {
     std::cout << "Meow meow!" << std::endl;
 }
-
-// Animal::Animal(std::strin)
 
 Brain* Cat::getBrain() const {
     return _brain;

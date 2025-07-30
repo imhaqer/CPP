@@ -1,15 +1,9 @@
-#include "Dog.hpp"
+#include "../include/Dog.hpp"
 
 Dog::Dog() : Animal() {
     this->_type = "Dog";
     this->_brain = new Brain();
     std::cout << "Dog default constructor called" << std::endl;
-}
-
-Dog::Dog(const std::string& type) : Animal() {
-    this->_type = type;
-    this->_brain = new Brain();
-    std::cout << "Dog parameterized constructor called" << std::endl;
 }
 
 Dog::~Dog() {

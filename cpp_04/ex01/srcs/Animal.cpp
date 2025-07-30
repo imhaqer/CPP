@@ -1,10 +1,9 @@
-#include "Animal.hpp"
+#include "../include/Animal.hpp"
 
 Animal::Animal() {
     _type = "Unkown Animal";
     std::cout << "Animal default constructor called\n";
 }
-
 
 Animal::~Animal(){
     std::cout << "Animal destructor called\n";

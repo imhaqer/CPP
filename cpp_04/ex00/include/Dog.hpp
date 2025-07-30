@@ -7,11 +7,10 @@
 class Dog : public Animal {
     public:
         Dog();
-        ~Dog() override;
-        Dog(const std::string& type);
-        Dog& operator=(const Dog& other);
+        ~Dog();
         Dog(const Dog& other);
-    
+        Dog& operator=(const Dog& other);
+        
         void makeSound() const override;
 
 };

@@ -10,14 +10,13 @@ class Animal {
         std::string _type;
 
     public:
-        Animal();  // Default constructor
-        virtual ~Animal();  // Virtual destructor
-        Animal& operator=(const Animal& other);
+        Animal();
+        virtual ~Animal(); 
         Animal(const Animal& other);
-
+        Animal& operator=(const Animal& other);
+        
         std::string getType() const;
-        virtual void makeSound() const;
-      
+        virtual void makeSound() const;   
 };
 
 #endif

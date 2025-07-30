@@ -1,7 +1,7 @@
-#include "Animal.hpp"
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongCat.hpp"
+#include "../include/Animal.hpp"
+#include "../include/Dog.hpp"
+#include "../include/Cat.hpp"
+#include "../include/WrongCat.hpp"
 
 int main() {
 
@@ -35,17 +35,17 @@ int main() {
 
 
 	std::cout << "\n======= Animal Brain's tests =======\n";
-	const int animalCout = 2;
-	Animal* animalsArray[animalCout];
+	const int animalCount = 2;
+	Animal* animalsArray[animalCount];
 
-	for ( int i = 0; i < animalCout; i++) {
+	for ( int i = 0; i < animalCount; i++) {
 		if (i % 2 == 0) 
 			animalsArray[i] = new Dog();
 		else
 			animalsArray[i] = new Cat();
 	}
 
-	for ( int i = 0; i < animalCout; i++) 
+	for ( int i = 0; i < animalCount; i++) 
 		delete animalsArray[i];
 	
 	std::cout << "\n\n========== Cleanup ============\n";
