@@ -51,6 +51,10 @@ int main() {
 	// std::cout << "\n\n========== Cleanup ============\n";
 
 	const Animal* abstractAnimal = new Animal();
+
+	const Animal* cat = new Cat();
+	cat->makeSound();
+	delete cat;
 	//Animal class is now abstract and cannot be instaciated
 
 	return 0;

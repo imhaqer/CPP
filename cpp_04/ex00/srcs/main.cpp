@@ -56,10 +56,11 @@ int main() {
 	delete dog;
 	
 	std::cout << "\n\n======== Cat Animal ===============" << std::endl;
+
 	Animal  *cat = new Cat();
 	std::cout << "Animal type: "<< cat->getType() << " " << std::endl;
 	std::cout << "Sound: ";
-	dog->makeSound();
+	cat->makeSound();
 	delete cat;
 
 	std::cout << "\n\n";
