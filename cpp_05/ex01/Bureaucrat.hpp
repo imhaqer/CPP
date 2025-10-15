@@ -7,6 +7,8 @@
 #define MAX_GRADE 150
 #define MIN_GRADE 1
 
+class Form; // Forward declaration
+
 class Bureaucrat {
 	private:
 		std::string const name_;
@@ -25,6 +27,9 @@ class Bureaucrat {
 		void 			incrementGrade();
 		void 			decrementGrade();
 
+			// New method to sign a form
+		void signForm(Form &form) const;
+		
 		class GradeTooHighException: public std::exception {
 			public:
 				const char* what() const throw();
