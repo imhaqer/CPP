@@ -1,8 +1,8 @@
 NAME = Bureaucrat
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11
-SRC = main.cpp Bureaucrat.cpp
-HEADERS = Bureaucrat.hpp  
+SRC = main.cpp Bureaucrat.cpp Form.cpp
+HEADERS = Bureaucrat.hpp  Form.hpp
 OBJ = $(SRC:.cpp=.o)
 INC = -I include
 
