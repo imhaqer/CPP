@@ -1,6 +1,6 @@
 NAME = Bureaucrat
 CC = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++11
+CFLAGS = -Wall -Werror -Wextra -std=c++98
 SRC = main.cpp Bureaucrat.cpp Form.cpp
 HEADERS = Bureaucrat.hpp  Form.hpp
 OBJ = $(SRC:.cpp=.o)
