@@ -21,6 +21,11 @@ Bureaucrat::Bureaucrat(const Bureaucrat &cpy): name_(cpy.getName()), grade_(cpy.
 	std::cout << cpy.getGrade() << " copied" << std::endl;
 }
 
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &src) {
+	if (this != &src)
+		this->grade_ = src.grade_;
+	return *this;
+}
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b) {
     os << b.getName() << ", bureaucrat grade " << b.getGrade();
