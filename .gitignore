@@ -2,6 +2,9 @@
 *.o
 
 # Compiled binaries (exercise executables)
+cpp_06/ex00/convert
+cpp_06/ex01/serializer
+cpp_06/ex02/identify
 cpp_07/ex00/whatever
 cpp_07/ex01/iter
 cpp_07/ex02/array
