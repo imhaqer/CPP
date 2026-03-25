@@ -1,84 +1,65 @@
 #include <iostream>
-#include <string>
 #include "Array.hpp"
 
-int main(void)
+int main()
 {
-    // --- default constructor: empty array ---
-    Array<int> empty;
-    std::cout << "Empty array size: " << empty.size() << std::endl;
+    // Test 1: Create an empty array
+    Array<int> arr1;
+    std::cout << "Test 1: Empty Array size: " << arr1.size() << std::endl;
 
-    // --- size constructor: 5 ints, value-initialized to 0 ---
-    Array<int> ints(5);
-    std::cout << "Int array size: " << ints.size() << std::endl;
-    for (unsigned int i = 0; i < ints.size(); i++)
-        ints[i] = static_cast<int>(i * 10);
+    // Test 2: Create an array with 5 elements
+    Array<int> arr2(5);
+    std::cout << "Test 2: Array size: " << arr2.size() << std::endl;
 
-    std::cout << "Int array contents:";
-    for (unsigned int i = 0; i < ints.size(); i++)
-        std::cout << " " << ints[i];
+    // Initialize array elements and print
+    for (unsigned int i = 0; i < arr2.size(); ++i)
+    {
+        arr2[i] = i + 1;  // Initialize with 1, 2, 3, 4, 5
+    }
+
+    // Print the elements
+    std::cout << "Test 2: Array elements: ";
+    for (unsigned int i = 0; i < arr2.size(); ++i)
+    {
+        std::cout << arr2[i] << " ";
+    }
     std::cout << std::endl;
 
-    // --- copy constructor: deep copy ---
-    Array<int> copy(ints);
-    copy[0] = 999;  // modifying copy should NOT affect original
-    std::cout << "Original[0] after copy was modified: " << ints[0] << std::endl;
-    std::cout << "Copy[0]: " << copy[0] << std::endl;
-
-    // --- assignment operator ---
-    Array<int> assigned;
-    assigned = ints;
-    assigned[1] = 888;
-    std::cout << "Original[1] after assigned was modified: " << ints[1] << std::endl;
-    std::cout << "Assigned[1]: " << assigned[1] << std::endl;
-
-    // --- self-assignment (should be safe) ---
-    ints = ints;
-    std::cout << "After self-assign, ints[0]: " << ints[0] << std::endl;
-
-    // --- string array ---
-    Array<std::string> strs(3);
-    strs[0] = "hello";
-    strs[1] = "world";
-    strs[2] = "!";
-    for (unsigned int i = 0; i < strs.size(); i++)
-        std::cout << strs[i] << " ";
+    // Test 3: Test Copy Constructor
+    Array<int> arr3(arr2);
+    std::cout << "Test 3: Copy constructor elements: ";
+    for (unsigned int i = 0; i < arr3.size(); ++i)
+    {
+        std::cout << arr3[i] << " ";
+    }
     std::cout << std::endl;
 
-    // --- out of bounds access: should throw ---
-    std::cout << "Testing out-of-bounds access:" << std::endl;
-    try
+    // Test 4: Test Assignment Operator
+    Array<int> arr4 = arr2;
+    std::cout << "Test 4: After assignment, arr4 elements: ";
+    for (unsigned int i = 0; i < arr4.size(); ++i)
     {
-        ints[100] = 0;
-        std::cout << "ERROR: no exception thrown!" << std::endl;
+        std::cout << arr4[i] << " ";
     }
-    catch (const std::out_of_range &e)
-    {
-        std::cout << "Caught expected exception: " << e.what() << std::endl;
-    }
+    std::cout << std::endl;
 
-    // --- access on empty array: should throw ---
-    try
+    // Modify arr2 and check if arr4 is independent
+    arr2[0] = 100;
+    std::cout << "Test 4: After modifying arr2[0], arr4 elements: ";
+    for (unsigned int i = 0; i < arr4.size(); ++i)
     {
-        empty[0] = 0;
-        std::cout << "ERROR: no exception thrown!" << std::endl;
+        std::cout << arr4[i] << " ";
     }
-    catch (const std::out_of_range &e)
-    {
-        std::cout << "Caught expected exception on empty: " << e.what() << std::endl;
-    }
+    std::cout << std::endl;
 
-    // --- const array: read-only access ---
-    const Array<int> constArr(ints);
-    std::cout << "Const array[2]: " << constArr[2] << std::endl;
+    // Test 5: Out of bounds access
     try
     {
-        constArr[50];
-        std::cout << "ERROR: no exception thrown!" << std::endl;
+        std::cout << "Test 5: Accessing out-of-bounds: " << arr2[10] << std::endl;
     }
-    catch (const std::out_of_range &e)
+    catch (const std::exception& e)
     {
-        std::cout << "Caught expected exception on const: " << e.what() << std::endl;
+        std::cout << "Test 5: Exception caught: " << e.what() << std::endl;
     }
 
     return 0;

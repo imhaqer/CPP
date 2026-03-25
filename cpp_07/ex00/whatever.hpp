@@ -12,19 +12,17 @@ void swap(T &a, T &b)
 }
 
 // min: returns the smaller of the two values
-// if both are equal, returns the second one (b)
 template<typename T>
 const T &min(const T &a, const T &b)
 {
-    return (b < a) ? b : a;
+    return (a < b) ? a : b;
 }
 
 // max: returns the larger of the two values
-// if both are equal, returns the second one (b)
 template<typename T>
 const T &max(const T &a, const T &b)
 {
-    return (b > a) ? b : a;
+    return (a > b) ? a : b;
 }
 
 #endif

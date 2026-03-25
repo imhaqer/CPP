@@ -1,30 +1,29 @@
 #include "ScalarConverter.hpp"
 #include <iostream>
-#include <iomanip>    // std::fixed, std::setprecision
-#include <limits>     // std::numeric_limits
-#include <cmath>      // std::isnan, std::isinf, fmod
-#include <cstdlib>    // strtod
-#include <cctype>     // std::isprint
+#include <limits>
+#include <cmath>
+#include <cstdlib>
+#include <iomanip>
+#include <cctype>
 
-// The four types we can detect from the string
 enum LiteralType { CHAR_LIT, INT_LIT, FLOAT_LIT, DOUBLE_LIT, PSEUDO_LIT };
 
-// detectType: inspect the string and decide what kind of literal it is.
-// Order matters: pseudo-literals and char literals are checked first
-// before we fall back to numeric detection.
 static LiteralType detectType(const std::string &s)
 {
-    // pseudo-literals: nan, +inf, -inf and their float variants
+    // pseudo-literals
     if (s == "nan" || s == "+inf" || s == "-inf" ||
         s == "nanf" || s == "+inff" || s == "-inff")
         return PSEUDO_LIT;
 
-    // char literal: exactly three characters 'x'
+    // quoted char literal: 'x'
     if (s.length() == 3 && s[0] == '\'' && s[2] == '\'')
         return CHAR_LIT;
 
-    // float literal: ends in 'f' AND contains a decimal point
-    // e.g. "4.2f", "0.0f", "-4.2f"
+    // single non-digit printable char (shell already stripped quotes)
+    if (s.length() == 1 && std::isprint(static_cast<unsigned char>(s[0])) && !std::isdigit(s[0]))
+        return CHAR_LIT;
+
+    // float literal: ends in 'f' and has a decimal point
     if (s.length() > 1 && s[s.length() - 1] == 'f')
     {
         std::string noSuffix = s.substr(0, s.length() - 1);
@@ -32,16 +31,13 @@ static LiteralType detectType(const std::string &s)
             return FLOAT_LIT;
     }
 
-    // double literal: contains a decimal point (no 'f' suffix)
+    // double literal: has a decimal point
     if (s.find('.') != std::string::npos)
         return DOUBLE_LIT;
 
-    // everything else is treated as an integer
     return INT_LIT;
 }
 
-// printFloat: print the float value with at least one decimal place.
-// NaN and infinity are printed as their respective pseudo-literals.
 static void printFloat(float f)
 {
     if (std::isinf(f))
@@ -49,13 +45,11 @@ static void printFloat(float f)
     else if (std::isnan(f))
         std::cout << "nanf";
     else if (fmod(static_cast<double>(f), 1.0) == 0.0)
-        // whole number: force ".0" so it looks like a float literal
         std::cout << std::fixed << std::setprecision(1) << f << "f";
     else
         std::cout << f << "f";
 }
 
-// printDouble: same idea for double values
 static void printDouble(double d)
 {
     if (std::isinf(d))
@@ -71,9 +65,8 @@ static void printDouble(double d)
 void ScalarConverter::convert(const std::string &input)
 {
     LiteralType type = detectType(input);
-    double      d    = 0.0;  // we store everything as double internally
+    double      d    = 0.0;
 
-    // --- Step 1: parse the string into a double ---
     if (type == PSEUDO_LIT)
     {
         if (input == "nan" || input == "nanf")
@@ -85,18 +78,16 @@ void ScalarConverter::convert(const std::string &input)
     }
     else if (type == CHAR_LIT)
     {
-        // extract the character from between the quotes
-        d = static_cast<double>(input[1]);
+        // handle both 'x' (quoted) and x (shell-stripped)
+        d = static_cast<double>(input.length() == 3 ? input[1] : input[0]);
     }
     else
     {
-        // strtod parses int, float, double strings correctly
         char *endPtr;
         d = strtod(input.c_str(), &endPtr);
     }
 
-    // --- Step 2: print char ---
-    // Use static_cast<char> (value conversion, not reinterpretation)
+    // char
     std::cout << "char: ";
     if (std::isnan(d) || std::isinf(d) || d < 0.0 || d > 127.0)
         std::cout << "impossible";
@@ -106,8 +97,7 @@ void ScalarConverter::convert(const std::string &input)
         std::cout << "'" << static_cast<char>(d) << "'";
     std::cout << std::endl;
 
-    // --- Step 3: print int ---
-    // static_cast<int> for explicit numeric conversion
+    // int
     std::cout << "int: ";
     if (std::isnan(d) || std::isinf(d) ||
         d > static_cast<double>(std::numeric_limits<int>::max()) ||
@@ -117,13 +107,12 @@ void ScalarConverter::convert(const std::string &input)
         std::cout << static_cast<int>(d);
     std::cout << std::endl;
 
-    // --- Step 4: print float ---
-    // static_cast<float> narrows the double to float precision
+    // float
     std::cout << "float: ";
     printFloat(static_cast<float>(d));
     std::cout << std::endl;
 
-    // --- Step 5: print double ---
+    // double
     std::cout << "double: ";
     printDouble(d);
     std::cout << std::endl;

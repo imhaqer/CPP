@@ -4,8 +4,14 @@
 
 int main(void)
 {
-    // Create a Data object on the heap with some values
-    Data *original = new Data();
+   // Create a Data object on the heap with some values
+    Data *original = new(std::nothrow) Data;  // Allocate memory with error check
+
+    // Check if allocation was successful
+    if (original == nullptr) {
+        std::cerr << "Memory allocation failed!" << std::endl;
+        return 1;  // Exit the program with an error code
+    }
     original->id    = 42;
     original->label = "hello";
     original->value = 3.14;

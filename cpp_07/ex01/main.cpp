@@ -1,62 +1,62 @@
 #include <iostream>
 #include <string>
+#include <cctype>  
 #include "iter.hpp"
 
-// --- helper functions used as the third argument to iter ---
+// --- Helper functions used as the third argument to iter ---
 
-// prints any element followed by a newline
+// Prints any element followed by a newline
 template<typename T>
 void printElem(const T &elem)
 {
     std::cout << elem << std::endl;
 }
 
-// doubles an integer in-place (requires non-const reference)
+// Doubles an integer in-place (requires non-const reference)
 void doubleIt(int &n)
 {
     n *= 2;
 }
 
-// converts a char to uppercase in-place
+// Converts a char to uppercase in-place
 void toUpper(char &c)
 {
-    if (c >= 'a' && c <= 'z')
-        c = c - 'a' + 'A';
+    c = std::toupper(c);
 }
+
 
 int main(void)
 {
-    // --- int array: print each element ---
-    int nums[] = {1, 2, 3, 4, 5};
+    std::cout << "---------------------------------" << std::endl;
     std::cout << "Original ints:" << std::endl;
-    ::iter(nums, 5, printElem<int>);
+    int nums[] = {1, 2, 3, 4, 5};
+    ::iter(nums, 5, printElem<int>); // Print original integers
 
-    // --- int array: double each element (modifying, non-const) ---
-    ::iter(nums, 5, doubleIt);
-    std::cout << "After doubling:" << std::endl;
-    ::iter(nums, 5, printElem<int>);
+    std::cout << "\n---------------------------------" << std::endl;
+    std::cout << "After doubling each integer:" << std::endl;
+    ::iter(nums, 5, doubleIt); // Double each number in array
+    ::iter(nums, 5, printElem<int>); // Print modified integers
 
-    // --- string array: print each element ---
+    std::cout << "\n---------------------------------" << std::endl;
+    std::cout << "Printing strings:" << std::endl;
     std::string words[] = {"hello", "world", "templates"};
-    std::cout << "Strings:" << std::endl;
-    ::iter(words, 3, printElem<std::string>);
+    ::iter(words, 3, printElem<std::string>); // Print each string
 
-    // --- const array: only const operations allowed ---
+    std::cout << "\n---------------------------------" << std::endl;
+    std::cout << "Const ints (read-only):" << std::endl;
     const int consts[] = {10, 20, 30};
-    std::cout << "Const ints:" << std::endl;
-    ::iter(consts, 3, printElem<int>);
+    ::iter(consts, 3, printElem<int>); // Print const array (no modifications allowed)
 
-    // --- char array: modify each char in-place ---
+    std::cout << "\n---------------------------------" << std::endl;
+    std::cout << "Uppercasing chars:" << std::endl;
     char letters[] = {'a', 'b', 'c', 'd'};
-    ::iter(letters, 4, toUpper);
-    std::cout << "Uppercased chars:" << std::endl;
-    ::iter(letters, 4, printElem<char>);
+    ::iter(letters, 4, toUpper); // Convert chars to uppercase
+    ::iter(letters, 4, printElem<char>); // Print uppercase chars
 
-    // --- edge case: zero-length array (nothing should happen) ---
+    std::cout << "\n---------------------------------" << std::endl;
+    std::cout << "Zero-length array (no output expected):" << std::endl;
     int empty[] = {99};
-    std::cout << "Zero-length iter (no output expected):" << std::endl;
-    ::iter(empty, 0, printElem<int>);
-    std::cout << "Done." << std::endl;
-
+    ::iter(empty, 0, printElem<int>); // Edge case: empty array
+    
     return 0;
 }

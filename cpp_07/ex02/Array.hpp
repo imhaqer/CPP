@@ -1,49 +1,87 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 
-#include <stdexcept>  // for std::out_of_range
-#include <cstddef>    // for std::size_t
+#include <iostream>
+#include <stdexcept>
+#include <exception>
 
-// Array: a generic fixed-size array wrapper
-// Follows Orthodox Canonical Form (default ctor, copy ctor, copy assign, dtor)
-template<typename T>
+template <typename T>
 class Array
 {
 private:
-    T            *_data;  // heap-allocated array of T
-    unsigned int  _size;  // number of elements
+    T* _array;
+    unsigned int _size;
 
 public:
-    // Default constructor: creates an empty array (size 0, no allocation)
-    Array();
+    // Default constructor: Creates an empty array
+    Array() : _array(NULL), _size(0) {}
 
-    // Size constructor: allocates n elements, value-initialized via new T[n]()
-    // Value-initialization zero-initializes POD types (int -> 0, etc.)
-    Array(unsigned int n);
+    // Constructor with size: Creates an array of n elements initialized by default
+    explicit Array(unsigned int n) : _size(n)
+    {
+        _array = new T[_size](); // Use value initialization to zero-initialize the elements
+    }
 
-    // Copy constructor: deep-copies every element from other
-    Array(const Array &other);
+    // Copy constructor
+    Array(const Array& other) : _size(other._size)
+    {
+        _array = new T[_size];
+        for (unsigned int i = 0; i < _size; ++i)
+        {
+            _array[i] = other._array[i];
+        }
+    }
 
-    // Assignment operator: deep copy, handles self-assignment safely
-    Array &operator=(const Array &other);
+    // Assignment operator
+    Array& operator=(const Array& other)
+    {
+        if (this != &other)
+        {
+            // Clean up current memory
+            delete[] _array;
 
-    // Destructor: releases the heap memory
-    ~Array();
+            // Copy new array
+            _size = other._size;
+            _array = new T[_size];
+            for (unsigned int i = 0; i < _size; ++i)
+            {
+                _array[i] = other._array[i];
+            }
+        }
+        return *this;
+    }
 
-    // Subscript operator (non-const): allows reading and writing arr[i]
-    // Throws std::out_of_range if index >= size
-    T &operator[](unsigned int index);
+    // Destructor: Frees dynamically allocated memory
+    ~Array()
+    {
+        delete[] _array;
+    }
 
-    // Subscript operator (const): allows reading from a const Array
-    // Throws std::out_of_range if index >= size
-    const T &operator[](unsigned int index) const;
+    // Subscript operator
+    T& operator[](unsigned int index)
+    {
+        if (index >= _size)
+        {
+            throw std::out_of_range("Index out of range");
+        }
+        return _array[index];
+    }
 
-    // size(): returns the number of elements; never modifies the object
-    unsigned int size() const;
+    // Const subscript operator for read-only access
+    const T& operator[](unsigned int index) const
+    {
+        if (index >= _size)
+        {
+            throw std::out_of_range("Index out of range");
+        }
+        return _array[index];
+    }
+
+    // Returns the size of the array
+    unsigned int size() const
+    {
+        return _size;
+    }
 };
-
-// Template implementations must be visible at the point of instantiation.
-// We keep them in a .tpp file and include it here.
-#include "Array.tpp"
 
 #endif

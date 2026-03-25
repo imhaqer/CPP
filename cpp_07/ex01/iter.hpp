@@ -2,7 +2,7 @@
 #define ITER_HPP
 
 #include <cstddef> // for std::size_t
-
+// a global function template
 // iter: applies a function to every element of an array
 //
 // T is deduced from the array pointer — if the array is const int*,
