@@ -3,84 +3,74 @@
 #include <stack>
 #include "MutantStack.hpp"
 
-int main(void)
-{
-    // --- subject's example ---
-    MutantStack<int> mstack;
+int main() {
+    std::cout << "=== MutantStack Basic Test ===\n\n";
 
+    // --- Create MutantStack and push elements ---
+    MutantStack<int> mstack;
+    std::cout << "Pushing: 5, 17\n";
     mstack.push(5);
     mstack.push(17);
-    std::cout << mstack.top() << std::endl;   // 17
 
+    std::cout << "Top element: " << mstack.top() << " (expected 17)\n";
+
+    std::cout << "Popping top element...\n";
     mstack.pop();
-    std::cout << mstack.size() << std::endl;  // 1
+    std::cout << "Size after pop: " << mstack.size() << " (expected 1)\n";
 
+    std::cout << "Pushing: 3, 5, 737, 0\n";
     mstack.push(3);
     mstack.push(5);
     mstack.push(737);
     mstack.push(0);
 
-    // iterate from bottom to top using forward iterators
-    MutantStack<int>::iterator it  = mstack.begin();
-    MutantStack<int>::iterator ite = mstack.end();
+    // --- Forward iteration (bottom to top) ---
+    std::cout << "\n--- Iterating from bottom to top ---\n";
+    for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); ++it)
+        std::cout << *it << " ";
+    std::cout << std::endl;
 
-    ++it;
-    --it;
-
-    while (it != ite)
-    {
-        std::cout << *it << std::endl;
-        ++it;
-    }
-
-    // verify MutantStack can be implicitly used as a std::stack
+    // --- Copy to std::stack ---
     std::stack<int> s(mstack);
-    std::cout << "std::stack copy top: " << s.top() << std::endl;
+    std::cout << "\nCopy to std::stack, top element: " << s.top() << " (expected 0)\n";
 
-    // --- same test with std::list to verify same output ---
-    std::cout << "\n--- Same test with std::list ---" << std::endl;
-    std::list<int> lst;
-    lst.push_back(5);
-    lst.push_back(3);
-    lst.push_back(5);
-    lst.push_back(737);
-    lst.push_back(0);
-
+    // --- Same test with std::list ---
+    std::cout << "\n--- Same test with std::list ---\n";
+    std::list<int> lst = {5, 3, 5, 737, 0};
     for (std::list<int>::iterator li = lst.begin(); li != lst.end(); ++li)
-        std::cout << *li << std::endl;
+        std::cout << *li << " ";
+    std::cout << std::endl;
 
-    // --- additional tests ---
+    // --- Reverse iteration (top to bottom) ---
+    std::cout << "\n--- Reverse iteration (top to bottom) ---\n";
+    for (MutantStack<int>::reverse_iterator rit = mstack.rbegin(); rit != mstack.rend(); ++rit)
+        std::cout << *rit << " ";
+    std::cout << std::endl;
 
-    // reverse iteration
-    std::cout << "\nReverse (top to bottom):" << std::endl;
-    MutantStack<int>::reverse_iterator rit = mstack.rbegin();
-    while (rit != mstack.rend())
-    {
-        std::cout << *rit << std::endl;
-        ++rit;
-    }
-
-    // empty stack edge case
+    // --- Empty stack edge case ---
     MutantStack<int> emptyStack;
-    std::cout << "\nEmpty stack size: " << emptyStack.size() << std::endl;
-    std::cout << "Empty stack begin==end: "
-              << (emptyStack.begin() == emptyStack.end() ? "yes" : "no") << std::endl;
+    std::cout << "\n--- Empty stack tests ---\n";
+    std::cout << "Empty stack size: " << emptyStack.size() << " (expected 0)\n";
+    std::cout << "Empty stack begin == end? "
+              << (emptyStack.begin() == emptyStack.end() ? "yes" : "no") << "\n";
 
-    // copy constructor
-    MutantStack<int> copy(mstack);
-    copy.push(999);
-    std::cout << "\nOriginal top: " << mstack.top()
-              << " | Copy top: "   << copy.top() << std::endl;
+    // --- Copy constructor test ---
+    MutantStack<int> copyStack(mstack);
+    copyStack.push(999);
+    std::cout << "\n--- Copy constructor test ---\n";
+    std::cout << "Original top: " << mstack.top() << " | Copy top: " << copyStack.top() << "\n";
 
-    // MutantStack with a different container (std::list as backing store)
-    MutantStack<int, std::list<int> > lstStack;
+    // --- MutantStack with std::list as underlying container ---
+    std::cout << "\n--- MutantStack with std::list as container ---\n";
+    MutantStack<int, std::list<int>> lstStack;
     lstStack.push(11);
     lstStack.push(22);
     lstStack.push(33);
-    for (MutantStack<int, std::list<int> >::iterator i = lstStack.begin();
-         i != lstStack.end(); ++i)
-        std::cout << *i << " ";
-    std::cout << std::endl;
 
+    std::cout << "Elements (bottom to top): ";
+    for (auto it = lstStack.begin(); it != lstStack.end(); ++it)
+        std::cout << *it << " ";
+    std::cout << std::endl;
+    
     return 0;
 }

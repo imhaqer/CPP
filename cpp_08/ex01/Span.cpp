@@ -41,14 +41,16 @@ int Span::shortestSpan() const
     std::vector<int> sorted(_numbers);
     std::sort(sorted.begin(), sorted.end());
 
-    int shortest = sorted[1] - sorted[0];  // first gap as starting point
+    long shortest = static_cast<long>(sorted[1]) - sorted[0];
+
     for (std::size_t i = 2; i < sorted.size(); i++)
     {
-        int gap = sorted[i] - sorted[i - 1];
+        long gap = static_cast<long>(sorted[i]) - sorted[i - 1];
         if (gap < shortest)
             shortest = gap;
     }
-    return shortest;
+
+    return static_cast<int>(shortest);
 }
 
 // longestSpan: the furthest any two numbers are apart is simply max - min

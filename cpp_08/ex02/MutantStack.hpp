@@ -19,10 +19,10 @@ class MutantStack : public std::stack<T, Container>
 {
 public:
     // Bring in iterator types from the underlying container
-    typedef typename Container::iterator               iterator;
-    typedef typename Container::const_iterator         const_iterator;
-    typedef typename Container::reverse_iterator       reverse_iterator;
-    typedef typename Container::const_reverse_iterator const_reverse_iterator;
+    typedef typename Container::iterator               iterator; //allows you to read/write elements while iterating.
+    typedef typename Container::const_iterator         const_iterator; //const_iterator → read-only iteration over const elements.
+    typedef typename Container::reverse_iterator       reverse_iterator; // iterate backward (last → first).
+    typedef typename Container::const_reverse_iterator const_reverse_iterator; // read-only backward iteration.
 
     // Default constructor
     MutantStack() {}
@@ -42,7 +42,7 @@ public:
 
     // Forward iterators: walk the stack from bottom to top
     // `this->c` is the protected member of std::stack — the real container
-    iterator begin() { return this->c.begin(); }
+    iterator begin() { return this->c.begin(); } //
     iterator end()   { return this->c.end(); }
 
     const_iterator begin() const { return this->c.begin(); }

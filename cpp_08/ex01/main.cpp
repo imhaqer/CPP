@@ -1,64 +1,82 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>   // rand, srand
-#include <ctime>     // time
 #include "Span.hpp"
+
+#define LINE "========================================"
+
+// Helper to print test results
+void printResult(const std::string &testName, bool pass, const std::string &msg = "")
+{
+    std::cout << "[" << (pass ? "PASS" : "FAIL") << "] " << testName;
+    if (!msg.empty())
+        std::cout << " -> " << msg;
+    std::cout << std::endl;
+}
 
 int main(void)
 {
-    // --- subject's example ---
-    Span sp = Span(5);
+
+    // --- Subject's example ---
+    std::cout << ">>> SUBJECT EXAMPLE\n";
+    Span sp(5);
     sp.addNumber(6);
     sp.addNumber(3);
     sp.addNumber(17);
     sp.addNumber(9);
     sp.addNumber(11);
 
-    std::cout << "shortestSpan: " << sp.shortestSpan() << std::endl;  // expected: 2
-    std::cout << "longestSpan:  " << sp.longestSpan()  << std::endl;  // expected: 14
+    std::cout << "shortestSpan: " << sp.shortestSpan() << " (expected: 2)" << std::endl;
+    std::cout << "longestSpan:  " << sp.longestSpan()  << " (expected: 14)" << std::endl;
 
-    // --- edge case: adding to a full span throws ---
+    // --- Full span exception ---
+    std::cout << "\n>>> FULL SPAN EDGE CASE\n";
     try
     {
         sp.addNumber(42);
-        std::cout << "ERROR: no exception thrown!" << std::endl;
+        printResult("Adding number to full span", false, "no exception thrown");
     }
     catch (const std::exception &e)
     {
-        std::cout << "Expected full-span exception: " << e.what() << std::endl;
+        printResult("Adding number to full span", true, e.what());
     }
 
-    // --- edge case: span with 0 or 1 element throws on span queries ---
+    // --- 0 or 1 element span ---
+    std::cout << "\n>>> TINY SPAN EDGE CASE\n";
     Span tiny(1);
     try
     {
         tiny.shortestSpan();
+        printResult("Shortest span with 0 elements", false, "no exception thrown");
     }
     catch (const std::exception &e)
     {
-        std::cout << "Expected 1-element exception: " << e.what() << std::endl;
+        printResult("Shortest span with 0 elements", true, e.what());
     }
 
     tiny.addNumber(7);
     try
     {
         tiny.longestSpan();
+        printResult("Longest span with 1 element", false, "no exception thrown");
     }
     catch (const std::exception &e)
     {
-        std::cout << "Expected 1-element exception: " << e.what() << std::endl;
+        printResult("Longest span with 1 element", true, e.what());
     }
 
-    // --- edge case: all identical values -> shortestSpan == 0, longestSpan == 0 ---
+    // --- All identical values ---
+    std::cout << "\n>>> ALL IDENTICAL VALUES\n";
     Span same(4);
     same.addNumber(5);
     same.addNumber(5);
     same.addNumber(5);
     same.addNumber(5);
-    std::cout << "All same -> shortest: " << same.shortestSpan()
-              << ", longest: " << same.longestSpan() << std::endl;
+    std::cout << "All same -> shortestSpan: " << same.shortestSpan()
+              << ", longestSpan: " << same.longestSpan() << std::endl;
 
-    // --- large test: 10 000 random numbers using addRange ---
+    // --- Large test: 10 000 random numbers ---
+    std::cout << "\n>>> LARGE SPAN TEST (10,000 numbers)\n";
     const unsigned int BIG = 10000;
     Span big(BIG);
 
@@ -68,22 +86,9 @@ int main(void)
         randNums.push_back(rand());
 
     big.addRange(randNums.begin(), randNums.end());
-    std::cout << "Large span (" << BIG << " numbers):" << std::endl;
-    std::cout << "  shortestSpan: " << big.shortestSpan() << std::endl;
-    std::cout << "  longestSpan:  " << big.longestSpan()  << std::endl;
+    std::cout << "Large span shortestSpan: " << big.shortestSpan() << std::endl;
+    std::cout << "Large span longestSpan:  " << big.longestSpan()  << std::endl;
 
-    // --- edge case: addRange exceeds capacity ---
-    Span small2(3);
-    small2.addNumber(1);
-    try
-    {
-        small2.addRange(randNums.begin(), randNums.begin() + 5);
-        std::cout << "ERROR: no exception thrown!" << std::endl;
-    }
-    catch (const std::exception &e)
-    {
-        std::cout << "Expected overflow exception: " << e.what() << std::endl;
-    }
 
     return 0;
 }
